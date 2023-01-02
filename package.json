@@ -1,11 +1,14 @@
 {
   "version": "0.1.0",
   "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/YouAPI/You.JS"
+  },
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
   "files": [
-    "dist",
-    "src"
+    "dist"
   ],
   "engines": {
     "node": ">=10"
@@ -31,16 +34,16 @@
     "singleQuote": true,
     "trailingComma": "es5"
   },
-  "name": "you.js",
+  "name": "youdotjs",
   "author": "sms",
-  "module": "dist/you.js.esm.js",
+  "module": "dist/youdotjs.esm.js",
   "size-limit": [
     {
-      "path": "dist/you.js.cjs.production.min.js",
+      "path": "dist/youdotjs.cjs.production.min.js",
       "limit": "10 KB"
     },
     {
-      "path": "dist/you.js.esm.js",
+      "path": "dist/youdotjs.esm.js",
       "limit": "10 KB"
     }
   ],

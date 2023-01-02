@@ -1,7 +1,7 @@
 
 <h1 align="center">
   <br>
-  <a href="https://github.com/YouAPI/You.JS"><img src="./assets/You.JS.png" alt="You.JS Logo" width="200"></a>
+  <a href="https://github.com/YouAPI/You.JS"><img src="https://raw.githubusercontent.com/YouAPI/You.JS/main/assets/You.JS.png?token=GHSAT0AAAAAABXN334JQHTCAWO5UECZMJAEY5TNAOQ" alt="You.JS Logo" width="200"></a>
   <br>
   <br>
   You.JS
@@ -26,11 +26,13 @@
 <p align="center">
   <a href="#about">About</a> •
   <!-- <a href="#key-features">Key Features</a> • -->
-  <a href="#how-to-use">How To Use</a> •
   <a href="#install">Install</a> •
+  <a href="#how-to-use">How To Use</a> •
   <!-- <a href="#credits">Credits</a> • -->
   <a href="#license">License</a>
 </p>
+
+**NOTE: This is a work in progress. README is not complete.**
 
 ## About
 Welcome to the the You.JS Library!
@@ -45,109 +47,97 @@ We hope you enjoy using You.JS!
 > adapted from [YouDotCom](https://github.com/YouAPI/YouDotCom)'s README.md
 
 
-<!-- ## Key Features
-* Bypass CloudFlare
-* Interact with YouChat
-* Find code examples
-* Server ready
-  - Supports non-gui operating systems.
-* Cross platform
-  - Windows, macOS and Linux ready. -->
+## Install
 
-<!-- ## How To Use
+To install the You.JS library, simply run the following command in your terminal:
 
-To help users get started with the YouDotCom Python Library, we have provided a selection of code examples that demonstrate common use cases for the library. These examples can be found below and cover a range of functionality.
-
-To use the code examples, simply copy and paste the relevant code into your Python script and customize it to fit your specific needs. You can also use the examples as a starting point for your own code, using them as a guide to understand how the library functions can be used to build your own applications and integrations with the You.com platform.
-
-We hope that these code examples will make it easier for users to get up and running with the YouDotCom Python Library and start building with the You.com platform.
-> :warning: **Warning!**
-> Do not spam or harm the you.com servers in any way!
-<details>
-<summary>YouChat example</summary>
-<br>
-  
-```python
-from youdotcom.init import Init  # import the Init class
-from youdotcom.youchat import Chat  # import YouChat
-
-driver = Init().driver  # setting up the webdriver. use `webdriver_path=` if the pre-installed one does not work.
-
-
-chat = Chat.send_message(driver=driver, message="how is your day?")  # send a message to YouChat. passing the driver and messages
-
-driver.close()  # close the webdriver
-
-
-print(chat)  # {'message': "It's been great! How about yours?", 'time': '11', 'error': 'False'}
+```bash
+npm install youdotjs
 ```
 
-This code imports two classes from the youdotcom library: Init and Chat. The Init class is used to set up a webdriver, which is a tool that allows you to automate web browsing tasks. The Chat class is used to send a message to the YouChat service.
+> Note: You.JS is named `youdotjs` on npm because `youjs` is already taken and `you.js` is too similar.
 
-First, the Init class is instantiated with Init(). The driver attribute of the resulting object is then stored in the driver variable. The driver attribute returns a webdriver object that can be used to automate web browsing tasks.
+You must also download [curl-impersonate](https://github.com/lwthiker/curl-impersonate/releases/latest), put it somewhere, and add an environment variable called `CURL_BINARY` that points to one of the impersonated curl binaries (such as `curl_chrome99` or `curl_ff100`).
 
-Next, the send_message method of the Chat class is called with driver and a message as arguments. This method sends the specified message to the YouChat service using the webdriver. The result of the method call is stored in the chat variable.
+> Note: curl-impersonate does not currently work on Windows. If you are on Windows, you can either use WSL or use the [curl-impersonate-win](https://github.com/depler/curl-impersonate-win/releases/latest).
 
-Finally, the webdriver is closed with driver.close(), and the value of chat is printed to the console.
-  
-</details>
+Alternatively, you may also implement the `Fetcher` function yourself to bypass CloudFlare's anti-bot measures. I have taken a shortcut and simply used curl-impersonate, but you may use any method you wish. I will explain more in the <a href="#how-to-use">how to use</a> section.
 
-<details>
-<summary>YouCode (only code search for now) example</summary>
-<br>
-  
-```python
-from youdotcom.code import Code # import the YouCode class.
-from youdotcom.init import Init # import the webdriver
+## How To Use
 
-driver = Init().driver # setting up the webdriver. use `webdriver_path=` if the pre-installed one does not work.
+### Fetcher
 
-code = Code.find_code(driver, search="how to make an python loop?") # get all the code displayed on screen. passing the driver and search string.
+The `Fetcher` function is used to create a custom fetcher for the library to use. It is a function that takes a URL and returns a promise that resolves to a string containing the HTML of the page at the given URL. The `curlFetch` function is an example of a fetcher that uses curl-impersonate to bypass CloudFlare's anti-bot measures.
 
-for string in code['response']: # loop through all the code
-    print(string) # print 1 at an time.
-    
-print(code['time']) # print the time taken to complete you search.
-```
-  
-This code imports the Code and Init classes from the youdotcom library. The Code class is used to search for code snippets, while the Init class is used to set up a webdriver.
+It is recommended that you use a fetcher that bypasses CloudFlare's anti-bot measures, as the library will not work without one. However, if you do not want to use a fetcher, you may use the `httpsFetch` function, which uses the `https` module to fetch the page. However, this will not bypass CloudFlare's anti-bot measures, so the library will not work.
 
-First, the Init class is instantiated with Init(). The driver attribute of the resulting object is then stored in the driver variable. The driver attribute returns a webdriver object that can be used to automate web browsing tasks.
+#### Using a Fetcher
 
-Next, the find_code method of the Code class is called with driver and a search string as arguments. This method searches for code snippets related to the specified search string using the webdriver. The result of the method call is stored in the code variable.
+The `Fetcher` function takes one or two arguments. The first argument is the URL to fetch. The second argument is an optional object containing options for the fetcher. It returns a promise that resolves to a `FetcherResponse` object.
 
-The code variable is a dictionary containing a list of code snippets in the response field and the time taken to complete the search in the time field. The code then loops through the response list and prints each code snippet to the console one at a time. Finally, the time taken to complete the search is printed to the console.
-  
-</details>
+> TODO: Add documentation for all objects
 
-or use:
+The `Fetcher` is defined as follows:
 
-```
-youdotcom -example
+```ts
+type Fetcher = (url: string, options?: FetcherOptions) => Promise<FetcherResponse>;
 ```
 
-> **Note**
-> You.JS is in Alpha and there will be bugs!
+The `FetcherOptions` object is defined as follows:
 
+```ts
+interface FetcherOptions {
+  headers?: { [key: string]: string };
+  rawHeaders?: string[]; // [key, value, key, value, ...]
+  method?: string;
+  body?: string;
+  timeout?: number;
+}
+```
 
-## install
+The `FetcherResponse` object is defined as follows:
 
-To install the You.JS library, you can install -->
+```ts
+interface FetcherResponse  {
+  status: number | undefined;
+  statusText: string | undefined;
+  headers: { [key: string]: string };
+  rawHeaders: string[];
+  body: string;
+}
+```
+
+To use, for example, `httpsFetch`, you would do the following:
+
+```ts
+import { httpsFetch } from 'youdotjs';
+
+httpsFetch('https://example.com').then((response) => {
+  console.log(response.body);
+}).catch((error) => {
+  console.error(error);
+});
+```
+
+#### curlFetch
+
+To use the `curlFetch` function, you must first download [curl-impersonate](https://github.com/lwthiker/curl-impersonate/releases/latest), put it somewhere, and add an environment variable called `CURL_BINARY` that points to one of the impersonated curl binaries (such as `curl_chrome99` or `curl_ff100`).
+
+> Note: curl-impersonate does not currently work on Windows. If you are on Windows, you can either use WSL or use the [curl-impersonate-win](https://github.com/depler/curl-impersonate-win/releases/latest).
+
+### Search
+
+> TODO: Add documentation for search
+
+For now, you can see the [Search.ts](src/lib/search/Search.ts) file for documentation. (I'm originally a Java developer, so this is why all the files are CamelCase.)
+
+### YouChat
+
+Currently not implemented because CloudFlare's restrictions on the YouChat API are too strict.
+
 ## Discord
 We also have an active [Discord server](https://discord.gg/SD7wZMFSvV) where you can chat with developers and get help with using the library. Our Discord community is a great place to ask questions, share your projects, and get feedback from other developers.
-
-<!-- 
-## Credits
-
-This software uses the following open source packages:
-
-- [undetected-chromedriver](https://github.com/ultrafunkamsterdam/undetected-chromedriver) -->
-
 
 ## License
 
 This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENSE) file for details
-
----
-
-
