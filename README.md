@@ -45,14 +45,14 @@ We hope you enjoy using You.JS!
 > adapted from [YouDotCom](https://github.com/YouAPI/YouDotCom)'s README.md
 
 
-## Key Features
+<!-- ## Key Features
 * Bypass CloudFlare
 * Interact with YouChat
 * Find code examples
 * Server ready
   - Supports non-gui operating systems.
 * Cross platform
-  - Windows, macOS and Linux ready.
+  - Windows, macOS and Linux ready. -->
 
 <!-- ## How To Use
 
