@@ -146,7 +146,7 @@ This software uses the following open source packages:
 
 ## License
 
-MIT
+This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENSE) file for details
 
 ---
 
