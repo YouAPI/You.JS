@@ -54,7 +54,7 @@ We hope you enjoy using You.JS!
 * Cross platform
   - Windows, macOS and Linux ready.
 
-## How To Use
+<!-- ## How To Use
 
 To help users get started with the YouDotCom Python Library, we have provided a selection of code examples that demonstrate common use cases for the library. These examples can be found below and cover a range of functionality.
 
@@ -132,7 +132,7 @@ youdotcom -example
 
 ## install
 
-To install the You.JS library, you can install
+To install the You.JS library, you can install -->
 ## Discord
 We also have an active [Discord server](https://discord.gg/SD7wZMFSvV) where you can chat with developers and get help with using the library. Our Discord community is a great place to ask questions, share your projects, and get feedback from other developers.
 
