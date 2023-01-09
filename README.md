@@ -4,7 +4,7 @@
   <a href="https://github.com/YouAPI/You.JS"><img src="https://raw.githubusercontent.com/YouAPI/You.JS/main/assets/You.JS.png" alt="You.JS Logo" width="200"></a>
   <br>
   <br>
-  You.JS
+  You.JS - Deprecated
   <br>
 </h1>
 
@@ -32,7 +32,7 @@
   <a href="#license">License</a>
 </p>
 
-**NOTE: This is a work in progress. README is not complete.**
+> This project is currently unmaintained as You.com does not have an official public API. When they do, development on You.JS will resume, probably at https://github.com/You-OpenSource/You-JS. In the meantime, this project is archived and will be marked as deprecated on NPM.
 
 ## About
 Welcome to the the You.JS Library!
